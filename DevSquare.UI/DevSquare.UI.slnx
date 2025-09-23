@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="../DevSquare.Core/DevSquare.Core.csproj" />
+    <Project Path="../DevSquare.Infrastructure/DevSquare.Infrastructure.csproj" />
+    <Project Path="DevSquare.UI.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
