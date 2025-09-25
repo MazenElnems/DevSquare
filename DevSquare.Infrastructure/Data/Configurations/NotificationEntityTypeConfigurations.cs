@@ -28,7 +28,7 @@ namespace DevSquare.Core.Domain.Configurations
             builder.HasOne(n => n.Post)
                 .WithMany()
                 .HasForeignKey(n => n.PostId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

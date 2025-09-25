@@ -23,7 +23,7 @@ namespace DevSquare.Core.Domain.Configurations
             builder.HasOne(c => c.Post)
                 .WithMany(p => p.Comments)
                 .HasForeignKey(c => c.PostId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(c => c.User)
                 .WithMany(u => u.Comments)
@@ -33,7 +33,7 @@ namespace DevSquare.Core.Domain.Configurations
             builder.HasOne(c => c.ParentComment)
                 .WithMany(c => c.Replies)
                 .HasForeignKey(c => c.ParentCommentId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
