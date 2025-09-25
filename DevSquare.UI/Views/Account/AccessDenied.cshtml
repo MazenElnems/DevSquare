@@ -1,0 +1,94 @@
+@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-danger">
+            <div class="card-header bg-danger text-white text-center">
+                <h4 class="mb-0">
+                    <i class="bi bi-shield-exclamation me-2"></i>Access Denied
+                </h4>
+            </div>
+            <div class="card-body p-4 text-center">
+                <div class="mb-4">
+                    <i class="bi bi-shield-x text-danger" style="font-size: 4rem;"></i>
+                </div>
+                
+                <h5 class="card-title text-danger mb-3">You don't have permission to access this resource</h5>
+                
+                <p class="card-text text-muted mb-4">
+                    The page or resource you're trying to access requires special permissions that your current account doesn't have.
+                </p>
+                
+                <div class="alert alert-light border" role="alert">
+                    <h6 class="alert-heading">
+                        <i class="bi bi-info-circle me-2"></i>Possible reasons:
+                    </h6>
+                    <ul class="list-unstyled mb-0 text-start">
+                        <li><i class="bi bi-dot text-primary"></i> You need to be logged in to access this page</li>
+                        <li><i class="bi bi-dot text-primary"></i> Your account doesn't have the required role or permissions</li>
+                        <li><i class="bi bi-dot text-primary"></i> Your session may have expired</li>
+                    </ul>
+                </div>
+                
+                <div class="d-grid gap-2 d-md-block">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                            <i class="bi bi-house me-2"></i>Go to Homepage
+                        </a>
+                        <a asp-controller="Account" asp-action="Profile" class="btn btn-outline-secondary">
+                            <i class="bi bi-person me-2"></i>View Profile
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login" asp-route-returnurl="@Context.Request.Path" class="btn btn-primary">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                        </a>
+                        <a asp-controller="Account" asp-action="Register" asp-route-returnurl="@Context.Request.Path" class="btn btn-outline-success">
+                            <i class="bi bi-person-plus me-2"></i>Sign Up
+                        </a>
+                    }
+                </div>
+                
+                <hr class="my-4">
+                
+                <div class="text-center">
+                    <small class="text-muted">
+                        If you believe this is an error, please 
+                        <a href="mailto:support@devsquare.com" class="text-decoration-none">contact support</a> 
+                        or try refreshing the page.
+                    </small>
+                </div>
+            </div>
+        </div>
+        
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    Logged in as: <strong>@(User.Identity?.Name ?? "Unknown")</strong>
+                    | <a asp-controller="Account" asp-action="Logout" class="text-decoration-none">Logout</a>
+                </small>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto-redirect after 30 seconds if user is not authenticated
+        @if (User.Identity?.IsAuthenticated != true)
+        {
+            <text>
+            setTimeout(function() {
+                if (confirm('Would you like to be redirected to the login page?')) {
+                    window.location.href = '@Url.Action("Login", "Account", new { returnUrl = Context.Request.Path })';
+                }
+            }, 30000);
+            </text>
+        }
+    </script>
+}

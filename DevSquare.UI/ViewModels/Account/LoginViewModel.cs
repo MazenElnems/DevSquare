@@ -13,6 +13,6 @@ namespace DevSquare.UI.ViewModels.Account
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [DisplayName("Remember Me")]
-        public bool RemeberMe { get; set; }
+        public bool RememberMe { get; set; }
     }
 }

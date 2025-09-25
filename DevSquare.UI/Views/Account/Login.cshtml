@@ -1,0 +1,107 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white text-center">
+                <h4 class="mb-0">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Login to DevSquare
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" id="loginForm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </span>
+                            <input asp-for="UserName" class="form-control" placeholder="Enter your username" autocomplete="username" />
+                        </div>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                            <input asp-for="Password" class="form-control" placeholder="Enter your password" autocomplete="current-password" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">
+                            Remember me
+                        </label>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                        </button>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="text-center">
+                        <p class="mb-2">
+                            <a asp-action="ForgotPassword" class="text-decoration-none">
+                                <i class="bi bi-key me-1"></i>Forgot your password?
+                            </a>
+                        </p>
+                        <p class="mb-0">
+                            Don't have an account? 
+                            <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none fw-bold">
+                                <i class="bi bi-person-plus me-1"></i>Sign up here
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                By logging in, you agree to DevSquare's 
+                <a asp-controller="Home" asp-action="Terms" class="text-decoration-none">Terms of Service</a> and 
+                <a asp-controller="Home" asp-action="Privacy" class="text-decoration-none">Privacy Policy</a>
+            </small>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    
+    <script>
+        // Focus on username field when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('input[name="Username"]').focus();
+        });
+        
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Logging in...';
+            submitBtn.disabled = true;
+            
+            // Re-enable button if form validation fails
+            setTimeout(() => {
+                if (!this.checkValidity()) {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            }, 100);
+        });
+    </script>
+}
