@@ -1,5 +1,8 @@
+/* DevSquare Custom Styles */
+
 html {
   font-size: 14px;
+  height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,19 +11,18 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Focus styles compatible with Litera theme */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem rgba(37, 140, 251, 0.25);
+}
+
+/* Form styles */
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;
@@ -28,4 +30,135 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+/* DevSquare specific styles */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.navbar-brand i {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Search bar styling */
+.navbar .input-group .form-control {
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.navbar .input-group .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar .input-group .form-control:focus {
+  background-color: white;
+  color: #333;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar .input-group .form-control:focus::placeholder {
+  color: #6c757d;
+}
+
+/* Notification badge */
+.badge {
+  font-size: 0.6rem !important;
+}
+
+/* Footer styling */
+footer {
+  margin-top: auto;
+}
+
+/* Post card styling */
+.post-card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.post-card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Vote buttons */
+.vote-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 40px;
+}
+
+.vote-btn {
+  border: none;
+  background: none;
+  padding: 0.25rem;
+  color: #6c757d;
+  font-size: 1.2rem;
+  transition: color 0.15s ease-in-out;
+}
+
+.vote-btn:hover {
+  color: #007bff;
+}
+
+.vote-btn.active {
+  color: #007bff;
+}
+
+.vote-count {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
+
+/* Comment threading */
+.comment-thread {
+  border-left: 2px solid #e9ecef;
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.comment-thread.level-1 { border-color: #007bff; }
+.comment-thread.level-2 { border-color: #6c757d; }
+.comment-thread.level-3 { border-color: #28a745; }
+
+/* Tag styling */
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #f8f9fa;
+  color: #495057;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0.125rem;
+}
+
+.tag:hover {
+  background-color: #e9ecef;
+  color: #495057;
+  text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar .input-group {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .vote-buttons {
+    flex-direction: row;
+    justify-content: center;
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .vote-count {
+    margin: 0 0.5rem;
+  }
 }
