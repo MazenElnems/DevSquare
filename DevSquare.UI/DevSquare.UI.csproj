@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Account\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
 
