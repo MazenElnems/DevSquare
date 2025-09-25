@@ -21,5 +21,6 @@ namespace DevSquare.Core.Domain
         public User User { get; set; }  
         public List<Comment> Comments { get; set; } = new();
         public List<Tag> Tags { get; set; } = new();
+        public List<Vote> Votes { get; set; } = new();
     }
 }

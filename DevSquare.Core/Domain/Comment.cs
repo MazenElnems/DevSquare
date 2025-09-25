@@ -21,5 +21,6 @@ namespace DevSquare.Core.Domain
         public Post Post { get; set; }
         public User User { get; set; }
         public Comment? ParentComment { get; set; }
+        public List<Comment> Replies { get; set; }  = new();
     }
 }
